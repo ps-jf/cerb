@@ -47,7 +47,8 @@
 		"erusev/parsedown-extra": "^0.7.1",
 		"donatj/phpuseragentparser": "^0.14.0",
 		"pear-pear.horde.org/horde_imap_client": "*",
-		"singpolyma/openpgp-php": "^0.4.0"
+		"singpolyma/openpgp-php": "^0.4.0",
+		"steverhoades/oauth2-openid-connect-server": "^1.0"
 	},
 	"require-dev" : {
 		"giggsey/libphonenumber-for-php" : "^8.8",
