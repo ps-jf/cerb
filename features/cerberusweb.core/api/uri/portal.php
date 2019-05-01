@@ -178,4 +178,11 @@ class ChPortalHelper {
 		
 		return self::$_sessions_cache[$cache_key];
 	}
+	
+	public static function getIdentity() {
+		if(false == ($session = self::getSession()))
+			return null;
+		
+		return $session->getIdentity();
+	}
 };
