@@ -229,6 +229,60 @@ EOD;
 }
 
 // ===========================================================================
+// Add portal pages and widgets
+
+if(!isset($tables['portal_page'])) {
+	$sql = sprintf("
+		CREATE TABLE `portal_page` (
+		id int(10) unsigned NOT NULL AUTO_INCREMENT,
+		name varchar(255) NOT NULL DEFAULT '',
+		uri varchar(255) NOT NULL DEFAULT '',
+		portal_id int(10) unsigned NOT NULL DEFAULT 0,
+		is_private tinyint unsigned NOT NULL DEFAULT 0,
+		pos tinyint unsigned NOT NULL DEFAULT 0,
+		extension_id varchar(255) NOT NULL DEFAULT '',
+		params_json text,
+		updated_at int(10) unsigned NOT NULL DEFAULT 0,
+		PRIMARY KEY (id),
+		KEY `portal_id` (`portal_id`),
+		KEY `updated_at` (`updated_at`)
+		) ENGINE=%s
+	", APP_DB_ENGINE);
+	$db->ExecuteMaster($sql) or die("[MySQL Error] " . $db->ErrorMsgMaster());
+	
+	$tables['portal_page'] = 'portal_page';
+	
+	$db->ExecuteMaster(sprintf("INSERT IGNORE INTO devblocks_setting (plugin_id, setting, value) VALUES (%s, %s, %s)",
+		$db->qstr('cerberusweb.core'),
+		$db->qstr('card:search:cerb.contexts.portal.page'),
+		$db->qstr('[{"context":"cerb.contexts.portal.tab","label_singular":"Tab","label_plural":"Tabs","query":"page.id:{{id}}"}]')
+	));
+}
+
+if(!isset($tables['portal_widget'])) {
+	$sql = sprintf("
+		CREATE TABLE `portal_widget` (
+		id int(10) unsigned NOT NULL AUTO_INCREMENT,
+		name varchar(255) NOT NULL DEFAULT '',
+		extension_id varchar(255) NOT NULL DEFAULT '',
+		portal_id int(10) unsigned NOT NULL DEFAULT '0',
+		updated_at int(10) unsigned NOT NULL DEFAULT '0',
+		params_json text,
+		width_units tinyint(3) unsigned NOT NULL DEFAULT '1',
+		zone varchar(255) NOT NULL DEFAULT '',
+		pos tinyint(255) DEFAULT '0',
+		PRIMARY KEY (id),
+		KEY `portal_id` (`portal_id`),
+		KEY `extension_id` (`extension_id`),
+		KEY `updated_at` (`updated_at`)
+		) ENGINE=%s
+	", APP_DB_ENGINE);
+	$db->ExecuteMaster($sql) or die("[MySQL Error] " . $db->ErrorMsgMaster());
+	
+	$tables['portal_widget'] = 'portal_widget';
+}
+
+// ===========================================================================
 // Finish up
 
 return TRUE;
