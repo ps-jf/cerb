@@ -2148,6 +2148,16 @@
 				<seg>portal pages</seg>
 			</tuv>
 		</tu>
+		<tu tuid="common.portal.widget">
+			<tuv xml:lang="en_US">
+				<seg>portal widget</seg>
+			</tuv>
+		</tu>
+		<tu tuid="common.portal.widgets">
+			<tuv xml:lang="en_US">
+				<seg>portal widgets</seg>
+			</tuv>
+		</tu>
 		<tu tuid="common.portals">
 			<tuv xml:lang="en_US">
 				<seg>portals</seg>

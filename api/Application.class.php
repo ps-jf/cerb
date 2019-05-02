@@ -977,6 +977,7 @@ class CerberusContexts {
 	const CONTEXT_PACKAGE = 'cerberusweb.contexts.package.library';
 	const CONTEXT_PORTAL = 'cerberusweb.contexts.portal';
 	const CONTEXT_PORTAL_PAGE = 'cerb.contexts.portal.page';
+	const CONTEXT_PORTAL_WIDGET = 'cerb.contexts.portal.widget';
 	const CONTEXT_PROFILE_TAB = 'cerberusweb.contexts.profile.tab';
 	const CONTEXT_PROFILE_WIDGET = 'cerberusweb.contexts.profile.widget';
 	const CONTEXT_PROJECT = 'cerberusweb.contexts.project';

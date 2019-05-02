@@ -566,6 +566,14 @@
 			<class name="View_PortalPage" />
 		</file>
 		
+		<file path="api/dao/portal_widget.php">
+			<class name="Context_PortalWidget" />
+			<class name="DAO_PortalWidget" />
+			<class name="Model_PortalWidget" />
+			<class name="SearchFields_PortalWidget" />
+			<class name="View_PortalWidget" />
+		</file>
+		
 		<file path="api/dao/profile_tab.php">
 			<class name="Context_ProfileTab" />
 			<class name="DAO_ProfileTab" />
@@ -1356,6 +1364,50 @@
 				<param key="alias" value="portal_page" />
 				<param key="dao_class" value="DAO_PortalPage" />
 				<param key="view_class" value="View_PortalPage" />
+				<param key="options">
+					<value>
+						<data key="cards" />
+						<data key="custom_fields" />
+						<data key="links" />
+						<data key="records" />
+						<data key="search" />
+						<data key="snippets" />
+						<data key="va_variable" />
+						<data key="watchers" />
+						<data key="workspace" />
+					</value>
+				</param>
+				<param key="acl">
+					<value>
+						<data key="comment" />
+						<data key="create" />
+						<data key="delete" />
+						<data key="export" />
+						<data key="import" />
+						<data key="update" />
+						<data key="update.bulk" />
+					</value>
+				</param>
+			</params>
+		</extension>
+		
+		<extension point="devblocks.context">
+			<id>cerb.contexts.portal.widget</id>
+			<name>Portal Widget</name>
+			<class>
+				<file>api/dao/portal_widget.php</file>
+				<name>Context_PortalWidget</name>
+			</class>
+			<params>
+				<param key="names">
+					<value>
+						<data key="portal widget" value="singular" />
+						<data key="portal widgets" value="plural" />
+					</value>
+				</param>
+				<param key="alias" value="portal_widget" />
+				<param key="dao_class" value="DAO_PortalWidget" />
+				<param key="view_class" value="View_PortalWidget" />
 				<param key="options">
 					<value>
 						<data key="cards" />
@@ -6574,6 +6626,19 @@
 				<params>
 					<param key="page_id" value="core.page.profiles" />
 					<param key="uri" value="portal_page" />
+				</params>
+			</extension>
+			
+			<extension point="cerberusweb.ui.page.section">
+				<id>core.page.profiles.portal_widget</id>
+				<name>Portal Widget Section</name>
+				<class>
+					<file>api/uri/profiles/portal_widget.php</file>
+					<name>PageSection_ProfilesPortalWidget</name>
+				</class>
+				<params>
+					<param key="page_id" value="core.page.profiles" />
+					<param key="uri" value="portal_widget" />
 				</params>
 			</extension>
 			
