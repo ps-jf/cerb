@@ -558,6 +558,14 @@
 			<class name="View_PackageLibrary" />
 		</file>
 		
+		<file path="api/dao/portal_page.php">
+			<class name="Context_PortalPage" />
+			<class name="DAO_PortalPage" />
+			<class name="Model_PortalPage" />
+			<class name="SearchFields_PortalPage" />
+			<class name="View_PortalPage" />
+		</file>
+		
 		<file path="api/dao/profile_tab.php">
 			<class name="Context_ProfileTab" />
 			<class name="DAO_ProfileTab" />
@@ -1326,6 +1334,50 @@
 						<data key="delete" />
 						<data key="export" />
 						<data key="update" />
+					</value>
+				</param>
+			</params>
+		</extension>
+		
+		<extension point="devblocks.context">
+			<id>cerb.contexts.portal.page</id>
+			<name>Portal Page</name>
+			<class>
+				<file>api/dao/portal_page.php</file>
+				<name>Context_PortalPage</name>
+			</class>
+			<params>
+				<param key="names">
+					<value>
+						<data key="portal page" value="singular" />
+						<data key="portal pages" value="plural" />
+					</value>
+				</param>
+				<param key="alias" value="portal_page" />
+				<param key="dao_class" value="DAO_PortalPage" />
+				<param key="view_class" value="View_PortalPage" />
+				<param key="options">
+					<value>
+						<data key="cards" />
+						<data key="custom_fields" />
+						<data key="links" />
+						<data key="records" />
+						<data key="search" />
+						<data key="snippets" />
+						<data key="va_variable" />
+						<data key="watchers" />
+						<data key="workspace" />
+					</value>
+				</param>
+				<param key="acl">
+					<value>
+						<data key="comment" />
+						<data key="create" />
+						<data key="delete" />
+						<data key="export" />
+						<data key="import" />
+						<data key="update" />
+						<data key="update.bulk" />
 					</value>
 				</param>
 			</params>
@@ -6511,7 +6563,20 @@
 					<param key="uri" value="package" />
 				</params>
 			</extension>
-
+			
+			<extension point="cerberusweb.ui.page.section">
+				<id>core.page.profiles.portal_page</id>
+				<name>Portal Page Section</name>
+				<class>
+					<file>api/uri/profiles/portal_page.php</file>
+					<name>PageSection_ProfilesPortalPage</name>
+				</class>
+				<params>
+					<param key="page_id" value="core.page.profiles" />
+					<param key="uri" value="portal_page" />
+				</params>
+			</extension>
+			
 			<extension point="cerberusweb.ui.page.section">
 				<id>core.page.profiles.profile_tab</id>
 				<name>Profile Tab Section</name>
