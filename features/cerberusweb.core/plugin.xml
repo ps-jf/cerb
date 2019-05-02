@@ -7159,6 +7159,17 @@
 		<!-- Portal Pages -->
 		
 		<extension point="cerb.portal.page">
+			<id>cerb.portal.page.dashboard</id>
+			<name>Dashboard</name>
+			<class>
+				<file>api/portals/pages/dashboard.php</file>
+				<name>PortalPage_Dashboard</name>
+			</class>
+			<params>
+			</params>
+		</extension>
+		
+		<extension point="cerb.portal.page">
 			<id>cerb.portal.page.form_interaction</id>
 			<name>Form Interaction</name>
 			<class>
