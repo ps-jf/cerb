@@ -7202,6 +7202,19 @@
 			</params>
 		</extension>
 		
+		<!-- Portal Widgets -->
+		
+		<extension point="cerb.portal.widget">
+			<id>cerb.portal.widget.form_interaction</id>
+			<name>Form Interaction</name>
+			<class>
+				<file>api/portals/widgets/form_interaction.php</file>
+				<name>PortalWidget_FormInteraction</name>
+			</class>
+			<params>
+			</params>
+		</extension>
+		
 		<!-- Workspace Pages -->
 		
 		<extension point="cerberusweb.ui.workspace.page">
