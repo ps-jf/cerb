@@ -7180,6 +7180,17 @@
 			</params>
 		</extension>
 		
+		<extension point="cerb.portal.page">
+			<id>cerb.portal.page.profile</id>
+			<name>Record Profile</name>
+			<class>
+				<file>api/portals/pages/profile.php</file>
+				<name>PortalPage_Profile</name>
+			</class>
+			<params>
+			</params>
+		</extension>
+		
 		<!-- Workspace Pages -->
 		
 		<extension point="cerberusweb.ui.workspace.page">
