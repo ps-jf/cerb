@@ -7216,6 +7216,17 @@
 		</extension>
 		
 		<extension point="cerb.portal.widget">
+			<id>cerb.portal.widget.sheet</id>
+			<name>Sheet</name>
+			<class>
+				<file>api/portals/widgets/sheet.php</file>
+				<name>PortalWidget_Sheet</name>
+			</class>
+			<params>
+			</params>
+		</extension>
+		
+		<extension point="cerb.portal.widget">
 			<id>cerb.portal.widget.text</id>
 			<name>Text</name>
 			<class>
