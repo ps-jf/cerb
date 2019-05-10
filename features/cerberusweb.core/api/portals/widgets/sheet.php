@@ -49,10 +49,13 @@ class PortalWidget_Sheet extends Extension_PortalWidget {
 		
 		$sheet_dicts = $results['data'];
 		
+		$layout = $sheets->getLayout($sheet);
+		$tpl->assign('layout', $layout);
+		
 		$rows = $sheets->getRows($sheet, $sheet_dicts);
 		$tpl->assign('rows', $rows);
 		
-		$columns = $sheet['columns'];
+		$columns = $sheets->getColumns($sheet);
 		$tpl->assign('columns', $columns);
 		
 		$tpl->assign('widget', $widget);
@@ -63,7 +66,7 @@ class PortalWidget_Sheet extends Extension_PortalWidget {
 			$tpl->assign('paging', $paging);
 		}
 		
-		if('fieldsets' == @$sheet['style']) {
+		if('fieldsets' == $layout['style']) {
 			$tpl->display('devblocks:cerberusweb.core::portals/builder/widgets/sheet/sheet_fieldsets.tpl');
 		} else {
 			$tpl->display('devblocks:cerberusweb.core::portals/builder/widgets/sheet/sheet_table.tpl');
