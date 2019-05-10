@@ -104,7 +104,7 @@
 </div>
 
 <div class="cerb-placeholder-menu" style="display:none;">
-{include file="devblocks:cerberusweb.core::internal/profiles/tabs/dashboard/toolbar.tpl"}
+{include file="devblocks:cerberusweb.core::internal/portals/widgets/toolbar.tpl"}
 </div>
 
 {include file="devblocks:cerberusweb.core::internal/custom_fieldsets/peek_custom_fieldsets.tpl" context=$peek_context context_id=$model->id}

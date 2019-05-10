@@ -167,6 +167,108 @@ class PageSection_ProfilesPortalWidget extends Extension_PageSection {
 		$extension->renderConfig($model);
 	}
 	
+	function testWidgetTemplateAction() {
+		@$id = DevblocksPlatform::importGPC($_REQUEST['id'], 'int', 0);
+		@$portal_page_id = DevblocksPlatform::importGPC($_REQUEST['portal_page_id'], 'int', 0);
+		@$params = DevblocksPlatform::importGPC($_REQUEST['params'], 'array', []);
+		@$template_key = DevblocksPlatform::importGPC($_REQUEST['template_key'], 'string', '');
+		@$index = DevblocksPlatform::importGPC($_REQUEST['index'], 'integer', 0);
+		@$format = DevblocksPlatform::importGPC($_REQUEST['format'], 'string', '');
+		
+		@$placeholders_yaml = DevblocksPlatform::importVar($params['placeholder_simulator_yaml'], 'string', '');
+		
+		$tpl_builder = DevblocksPlatform::services()->templateBuilder();
+		$tpl = DevblocksPlatform::services()->template();
+		
+		$placeholders = DevblocksPlatform::services()->string()->yamlParse($placeholders_yaml, 0);
+		
+		$template = null;
+
+		if(DevblocksPlatform::strStartsWith($template_key, 'params[')) {
+			$template_key = trim(substr($template_key, 6),'[]');
+			$json_key = str_replace(['[',']'],['.',''],$template_key);
+			$json_var = DevblocksPlatform::jsonGetPointerFromPath($params, $json_key);
+			
+			if(is_string($json_var)) {
+				@$template = $json_var;
+			} elseif (is_array($json_var)) {
+				if(array_key_exists($index, $json_var)) {
+					@$template = $json_var[$index];
+				}
+			}
+		}
+		
+		if(false == $template)
+			return;
+		
+		if(!$portal_page_id && $id) {
+			if(false != ($portal_widget = DAO_PortalWidget::get($id))) 
+				$portal_page_id = $portal_widget->portal_page_id;
+		}
+		
+		// This may be a new widget
+		if($portal_page_id) {
+			$portal_page = DAO_PortalPage::get($portal_page_id);
+			
+		} else {
+			$portal_page = null;
+		}
+		
+		$dict = DevblocksDictionaryDelegate::instance([
+			'identity__context' => CerberusContexts::CONTEXT_IDENTITY,
+			'identity_id' => DAO_Identity::random(),
+			
+			'page__context' => CerberusContexts::CONTEXT_PORTAL_PAGE,
+			'page_id' => $portal_page ? intval($portal_page->id) : 0,
+			
+			'portal__context' => CerberusContexts::CONTEXT_PORTAL,
+			'portal_id' => $portal_page ? intval($portal_page->portal_id) : 0,
+		]);
+		
+		// Record ID (if page is profile)
+		if($portal_page && $portal_page->extension_id = PortalPage_Profile::ID) {
+			if(@$portal_page->params['context'] && false != ($portal_page_context = Extension_DevblocksContext::getByAlias($portal_page->params['context'], true))) {
+				if(false != ($dao_class = $portal_page_context->getDaoClass())) {
+					$dict->set('record__context', $portal_page_context->id); // $portal_page->params['context']
+					$dict->set('record_id', $dao_class::random());
+				}
+			}
+		}
+		
+		if(is_array($placeholders))
+		foreach($placeholders as $placeholder_key => $placeholder_value) {
+			$dict->set($placeholder_key, $placeholder_value);
+		}
+		
+		$success = false;
+		$output = '';
+		
+		if(!is_string($template) || false === (@$out = $tpl_builder->build($template, $dict))) {
+			// If we failed, show the compile errors
+			$errors = $tpl_builder->getErrors();
+			$success = false;
+			$output = @array_shift($errors);
+			
+		} else {
+			$success = true;
+			$output = $out;
+		}
+		
+		if('json' == $format) {
+			header('Content-Type: application/json; charset=utf-8');
+			
+			echo json_encode([
+				'status' => $success,
+				'response' => $output,
+			]);
+			
+		} else {
+			$tpl->assign('success', $success);
+			$tpl->assign('output', $output);
+			$tpl->display('devblocks:cerberusweb.core::internal/renderers/test_results.tpl');
+		}
+	}
+	
 	function viewExploreAction() {
 		@$view_id = DevblocksPlatform::importGPC($_REQUEST['view_id'],'string');
 		
