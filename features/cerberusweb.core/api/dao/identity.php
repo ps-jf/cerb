@@ -169,7 +169,7 @@ class DAO_Identity extends Cerb_ORMHelper {
 				$data_query = sprintf('type:worklist.records of:identity query:(%s pool.id:%d username:%s) format:dictionaries',
 					@$scope['id'] ? sprintf('id:!%d', $scope['id']) : '',
 					$pool_id,
-					$data->escapeString($value)
+					$data->stripQuotes($value)
 				);
 				
 				// $value must be unique per identity pool
