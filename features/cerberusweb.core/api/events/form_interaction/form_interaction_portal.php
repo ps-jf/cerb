@@ -453,6 +453,7 @@ class Event_FormInteractionPortal extends Extension_DevblocksEvent {
 				
 				@$label = $tpl_builder->build($params['label'], $dict);
 				@$options = DevblocksPlatform::parseCrlfString($tpl_builder->build($params['options'], $dict));
+				@$default = DevblocksPlatform::parseCrlfString($tpl_builder->build($params['default'], $dict));
 				@$var = $params['var'];
 				@$var_validate = $params['var_validate'];
 				
@@ -465,6 +466,7 @@ class Event_FormInteractionPortal extends Extension_DevblocksEvent {
 					],
 					'label' => $label,
 					'options' => $options,
+					'default' => $default,
 				];
 				break;
 				

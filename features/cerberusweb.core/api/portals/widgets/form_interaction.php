@@ -384,10 +384,12 @@ class PortalWidget_FormInteraction extends Extension_PortalWidget {
 				case 'prompt.checkboxes':
 					@$label = $params['label'];
 					@$options = $params['options'];
+					@$default = $params['default'];
 					@$var = $params['_prompt']['var'];
 					
 					$tpl->assign('label', $label);
 					$tpl->assign('options', $options);
+					$tpl->assign('default', $default);
 					$tpl->assign('var', $var);
 					$tpl->assign('dict', $behavior_dict);
 					$tpl->display('devblocks:cerberusweb.core::events/form_interaction/portal/prompts/prompt_checkboxes.tpl');
