@@ -1446,7 +1446,7 @@
 				</param>
 			</params>
 		</extension>
-		
+
 		<extension point="devblocks.context">
 			<id>cerb.contexts.automation</id>
 			<name>Automation</name>
@@ -6235,7 +6235,7 @@
 					<param key="uri" value="attachment" />
 				</params>
 			</extension>
-			
+
 			<extension point="cerberusweb.ui.page.section">
 				<id>cerb.page.profiles.automation</id>
 				<name>Automation Section</name>
