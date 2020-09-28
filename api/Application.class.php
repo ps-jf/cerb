@@ -2604,9 +2604,8 @@ class Context_Application extends Extension_DevblocksContext implements IDevbloc
 		];
 	}
 	
-	function getKeyMeta() {
-		$keys = parent::getKeyMeta();
-		return $keys;
+	function getKeyMeta($with_dao_fields=true) {
+		return parent::getKeyMeta($with_dao_fields);
 	}
 	
 	function getDaoFieldsFromKeyAndValue($key, $value, &$out_fields, &$error) {
