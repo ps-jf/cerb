@@ -90,7 +90,7 @@ class PortalPage_Profile extends Extension_PortalPage {
 					case 'updateWidget':
 						header('Content-Type: text/html; charset=utf-8');
 						
-						@$widget_id = DevblocksPlatform::importGPC($_REQUEST['widget'], 'integer', 0);
+						@$widget_id = DevblocksPlatform::importGPC($_POST['widget'], 'integer', 0);
 						
 						if(false == ($widget = DAO_PortalWidget::get($widget_id)))
 							exit;
