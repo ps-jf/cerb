@@ -4902,6 +4902,7 @@
 			<params>
 				<param key="features">
 					<value>
+						<data key="callers" />
 						<data key="inputs" />
 					</value>
 				</param>
@@ -4934,8 +4935,9 @@
 			<params>
 				<param key="features">
 					<value>
-						<data key="inputs" />
 						<data key="await" />
+						<data key="callers" />
+						<data key="inputs" />
 					</value>
 				</param>
 			</params>
